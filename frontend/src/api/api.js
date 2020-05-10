@@ -20,14 +20,14 @@ export const coursesAPI = {
     },
     getOneCourse(id) {
         return instance.
-        get(`api/course/` + id)
+        get(`api/course/` + id + '/')
             .then(response => {
                 return response.data;
             });
     },
     getStudentData(id) {
         return instance.
-        get(`api/student/` + id)
+        get(`api/student/` + id + '/')
             .then(response => {
                 return response.data;
             });
