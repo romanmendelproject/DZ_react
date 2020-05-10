@@ -9,7 +9,7 @@ from django.contrib.auth.models import User
 from .serializers import UserSerializer, StudentSerializer
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
- 
+from courses.models import Student
 
 @api_view(['GET'])
 def current_user(request):
@@ -25,8 +25,9 @@ def registration_view(request):
         data = {}
         if serializer.is_valid():
             account = serializer.save()
+            s = Student(user=account, city='test')
+            s.save()
             data['response'] = 'successfully registered new user.'
-            data['email'] = account.email
             data['username'] = account.username
         else:
             data = serializer.errors

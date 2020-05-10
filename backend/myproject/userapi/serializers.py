@@ -17,7 +17,6 @@ class RegistrationSerializer(serializers.ModelSerializer):
 
     def save(self):
         account = User(
-                    email=self.validated_data['email'],
                     username=self.validated_data['username']
                     )
         password = self.validated_data['password']
@@ -26,6 +25,7 @@ class RegistrationSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError({'password': 'Passwords must match.'})
         account.set_password(password)
         account.save()
+
         return account
 
 
