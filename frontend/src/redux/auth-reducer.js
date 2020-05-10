@@ -46,6 +46,15 @@ export const login = (username, password) => (dispatch) => {
         });
 }
 
+export const register = (username, password, password2) => (dispatch) => {
+    authAPI.register(username, password, password2)
+        .then(response => {
+            if (response.data.username) {
+                dispatch(login(username, password))
+            }
+        });
+}
+
 export const logout = () => (dispatch) => {
     authAPI.logout()
         .then(response => {

@@ -44,6 +44,9 @@ export const authAPI = {
     login(username, password) {
         return instance.post(`user/login`, { username, password});
     },
+    register(username, password, password2) {
+        return instance.post(`user/register`, { username, password, password2});
+    },
     logout() {
         return instance.get(`user/logout`);
     }

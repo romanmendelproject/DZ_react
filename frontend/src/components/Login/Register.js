@@ -3,11 +3,10 @@ import { Field, reduxForm } from "redux-form";
 import { Input } from "../common/FormsControls/FormsControls";
 import { required } from "../../utils/validators/validators";
 import { connect } from "react-redux";
-import { login } from "../../redux/auth-reducer";
 import { Redirect } from "react-router-dom";
-import { NavLink } from "react-router-dom";
+import { register } from "../../redux/auth-reducer";
 
-const LoginForm = (props) => {
+const RegisterForm = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
@@ -21,30 +20,33 @@ const LoginForm = (props) => {
                     component={Input} />
             </div>
             <div>
-                <button>Login </button>
-                <NavLink to={"/register/"}>Registration</NavLink>
+                <Field placeholder={"Repeat password"} name={"password2"} type={"password"}
+                    validate={[required]}
+                    component={Input} />
+            </div>
+            <div>
+                <button>Regiser</button>
             </div>
         </form>
-        
     )
 }
 
-const LoginReduxForm = reduxForm({ form: 'login' })(LoginForm)
+const RegisterReduxForm = reduxForm({ form: 'register' })(RegisterForm)
 
-const Login = (props) => {
+const Register = (props) => {
     const onSubmit = (formData) => {
-        props.login(formData.login, formData.password);
+        props.register(formData.login, formData.password, formData.password2);
     }
     if (props.isAuth) {
         return <Redirect to={"/courses"} />
     }
     return <div>
-        <h1>Login</h1>
-        <LoginReduxForm onSubmit={onSubmit} />
+        <h1>Register</h1>
+        <RegisterReduxForm onSubmit={onSubmit} />
     </div>
 }
 const mapStateToProps = (state) => ({
     isAuth: state.auth.isAuth,
 })
 
-export default connect(mapStateToProps, { login })(Login);
+export default connect(mapStateToProps, { register })(Register);

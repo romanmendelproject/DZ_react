@@ -7,6 +7,7 @@ import MyCoursesContainer from "./components/MyCourses/MyCoursesContainer";
 import OneCourseContainer from "./components/OneCourse/OneCourseContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import LoginPage from "./components/Login/Login";
+import RegisterPage from "./components/Login/Register";
 
 const App = () => {
        return (
@@ -23,6 +24,9 @@ const App = () => {
 
                             <Route path='/login'
                                    render={() => <LoginPage />} />
+
+                            <Route path='/register'
+                                   render={() => <RegisterPage />} />
 
                             <Route path='/mycourses'
                                    render={() => <MyCoursesContainer />} />
