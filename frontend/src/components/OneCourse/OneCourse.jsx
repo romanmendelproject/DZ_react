@@ -6,15 +6,19 @@ class Courses extends React.Component {
     render() {
 
         return <div>
-            <h3>Course name: {this.props.oneCourse.title}</h3>
-            <h3>Teacher: {this.props.oneCourse.teacher.user.first_name}{this.props.oneCourse.teacher.user.last_name}</h3>
+            <h3>Course name: <span>{this.props.oneCourse.title}</span></h3>
+            <h3>Teacher: <h2>{this.props.oneCourse.teacher.user.first_name}{this.props.oneCourse.teacher.user.last_name}</h2></h3>
 
             <h3>Students:</h3>
-            {
-                this.props.oneCourse.students.map(u => <div key={u.id}>
-                    <div>{u.user.username}</div>
-                </div>)
-            }
+            <ul>
+                {
+                    this.props.oneCourse.students.map(u => <div key={u.id}>
+
+                        <li>{u.user.username}</li>
+
+                    </div>)
+                }
+            </ul>
             <div>
                 <button onClick={() => {
                     this.props.addStudentCourse(
